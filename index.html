@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILAGUA | Instituto Latinoamericano del Agua - Consultoría en Servicios Públicos</title>
+    <meta name="description" content="Especialistas en modernización, regulación y estructuración para el sector de agua potable, saneamiento básico y servicios públicos domiciliarios.">
+    
+    <!-- Google Fonts: Inter y Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ilagua: {
+                            navy: '#0b3c61',
+                            dark: '#072338',
+                            blue: '#0f4c81',
+                            cyan: '#00a8e8',
+                            light: '#0284c7',
+                            slate: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'corporate': '0 10px 25px -5px rgba(11, 60, 97, 0.1)',
+                        'corporate-lg': '0 20px 35px -10px rgba(11, 60, 97, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-bg {
+            background: linear-gradient(rgba(7, 35, 56, 0.85), rgba(15, 76, 129, 0.75)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .modal-animate-enter {
+            animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes modalPopIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        /* Estilos simulador móvil */
+        .sim-mode-active { background: #0f172a; padding: 40px 20px; min-height: 100vh; }
+        .sim-phone-frame { 
+            max-width: 390px; margin: auto; border-radius: 40px; 
+            border: 8px solid #334155; overflow: hidden; background: white;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-700 bg-white antialiased">
+
+    <!-- BARRA DE PRUEBA DE VISTAS (SIMULADOR) -->
+    <aside class="fixed top-4 right-6 z-[9999] flex items-center bg-slate-900/90 backdrop-blur-md border border-slate-700 rounded-full p-1.5 shadow-2xl">
+        <button onclick="setViewportMode('desktop')" class="px-3 py-1.5 rounded-full text-xs font-bold transition-all text-white bg-ilagua-light">🖥️ Desktop</button>
+        <button onclick="setViewportMode('mobile')" class="px-3 py-1.5 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white ml-1">📱 Móvil</button>
+    </aside>
+
+    <div id="sim-container" class="w-full transition-all duration-500">
+        <div id="page-wrapper" class="bg-white">
+
+            <!-- TOP BAR -->
+            <div class="bg-ilagua-dark text-slate-300 text-xs py-2 px-6">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+                    <div class="flex gap-4">
+                        <span><i class="fa-solid fa-location-dot text-ilagua-cyan mr-1"></i> Calle 75 N° 8-34 Piso 2, Bogotá</span>
+                        <span><i class="fa-solid fa-phone text-ilagua-cyan mr-1"></i> 5410463 - 5413737</span>
+                    </div>
+                    <a href="mailto:consultorias@ilagua.org" class="hover:text-white transition-colors">
+                        <i class="fa-solid fa-envelope text-ilagua-cyan mr-1"></i> consultorias@ilagua.org
+                    </a>
+                </div>
+            </div>
+
+            <!-- NAVEGACIÓN -->
+            <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+                <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <!-- Logo recreado SVG -->
+                        <svg class="h-12 w-auto transition-transform group-hover:scale-105" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="grad" cx="30%" cy="25%" r="75%">
+                                    <stop offset="0%" stop-color="#38bdf8" />
+                                    <stop offset="75%" stop-color="#0b3c61" />
+                                </radialGradient>
+                            </defs>
+                            <circle cx="50" cy="50" r="46" fill="url(#grad)" />
+                            <path d="M -5 78 C 25 78, 32 46, 52 42 C 72 38, 85 24, 105 12 L 105 28 C 88 42, 72 58, 48 62 C 28 66, 15 95, -5 98 Z" fill="white" />
+                        </svg>
+                        <div class="flex flex-col">
+                            <span class="font-heading text-2xl font-black text-ilagua-navy leading-none">ILAGUA</span>
+                            <span class="text-[11px] italic font-medium text-ilagua-blue uppercase">Instituto Latinoamericano del Agua</span>
+                        </div>
+                    </a>
+                    
+                    <div class="hidden lg:flex items-center gap-6">
+                        <a href="#quienes-somos" class="text-sm font-semibold hover:text-ilagua-light transition-colors">Quiénes Somos</a>
+                        <a href="#industrias" class="text-sm font-semibold hover:text-ilagua-light transition-colors">Ámbitos</a>
+                        <a href="#servicios" class="text-sm font-semibold hover:text-ilagua-light transition-colors">Servicios</a>
+                        <a href="#experiencia" class="text-sm font-semibold hover:text-ilagua-light transition-colors">Trayectoria</a>
+                        <a href="#contacto" class="bg-ilagua-navy text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-ilagua-blue transition-all">Contáctenos</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- HERO -->
+            <section class="hero-bg py-24 lg:py-36 text-white text-center">
+                <div class="max-w-5xl mx-auto px-6">
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-ilagua-cyan/20 border border-ilagua-cyan/30 text-ilagua-cyan text-sm font-bold mb-6 backdrop-blur-sm">
+                        FUNDADO EN 2014 • CONSULTORÍA ESTRATÉGICA
+                    </div>
+                    <h1 class="font-heading text-4xl md:text-6xl font-black mb-8 leading-tight">
+                        Seguridad jurídica y visión estratégica para el sector <span class="text-ilagua-cyan">agua potable y saneamiento básico</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-200 mb-10 max-w-3xl mx-auto">
+                        Estructuración integral, diagnóstico económico y modernización de Empresas de Servicios Públicos y entidades territoriales.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#servicios" class="bg-ilagua-light hover:bg-sky-500 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg">Nuestros Servicios</a>
+                        <a href="#contacto" class="bg-white/10 hover:bg-white/20 border border-white/30 font-bold py-4 px-10 rounded-xl backdrop-blur-md transition-all">Solicitar Asesoría</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESEÑA -->
+            <section id="quienes-somos" class="py-20 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <span class="text-ilagua-light font-bold uppercase tracking-widest text-sm">Reseña Institucional</span>
+                        <h2 class="font-heading text-3xl md:text-4xl font-extrabold text-ilagua-navy">¿Quiénes somos?</h2>
+                        <p class="text-slate-700 leading-relaxed text-justify">
+                            El Instituto Latinoamericano del Agua - ILAGUA- fue constituido a principios del año 2014, como una institución comprometida con proyectos y programas en el sector de agua potable y saneamiento básico, con base en la experiencia de sus accionistas en el desarrollo fortalecimiento, capacitación, diagnóstico, consultoría e implementación jurídica técnica y económica de empresas de servicios públicos domiciliarios.
+                        </p>
+                        <div class="bg-gradient-to-br from-ilagua-navy to-ilagua-blue p-8 rounded-2xl text-white shadow-corporate">
+                            <i class="fa-solid fa-quote-left text-ilagua-cyan text-3xl mb-4"></i>
+                            <p class="italic text-lg font-medium">"Nuestra misión es la de innovar en forma permanente modelos empresariales en el sector del agua potable y el saneamiento básico, que contribuyan a la mejora de la calidad de vida."</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Ingeniería hidráulica" class="rounded-3xl shadow-corporate-lg">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4">
+                            <div class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center text-ilagua-light text-2xl">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-black text-ilagua-navy">10+ Años</p>
+                                <p class="text-xs font-bold text-slate-500 uppercase">Trayectoria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICIOS CARDS -->
+            <section id="servicios" class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-6 text-center mb-16">
+                    <h2 class="font-heading text-3xl md:text-4xl font-extrabold text-ilagua-navy mb-4">Áreas de Servicios</h2>
+                    <p class="text-slate-500">Soluciones integrales para la gestión eficiente de los servicios públicos.</p>
+                </div>
+                <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 hover:shadow-corporate-lg transition-all group">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-ilagua-light shadow-sm mb-6 group-hover:bg-ilagua-light group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-ilagua-navy mb-4">Competencia Económica</h3>
+                        <p class="text-sm text-slate-600 mb-6">Contratos de concesión, acceso a redes y defensa de usuarios.</p>
+                        <button onclick="openModal('c')" class="text-ilagua-light font-bold text-sm flex items-center gap-2">Ver detalle <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 hover:shadow-corporate-lg transition-all group">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-ilagua-light shadow-sm mb-6 group-hover:bg-ilagua-light group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-ilagua-navy mb-4">Mercadeo</h3>
+                        <p class="text-sm text-slate-600 mb-6">Benchmarking internacional y estrategias de expansión.</p>
+                        <button onclick="openModal('m')" class="text-ilagua-light font-bold text-sm flex items-center gap-2">Ver detalle <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 hover:shadow-corporate-lg transition-all group">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-ilagua-light shadow-sm mb-6 group-hover:bg-ilagua-light group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-ilagua-navy mb-4">Administración</h3>
+                        <p class="text-sm text-slate-600 mb-6">Gobierno electrónico, PQR y modernización orgánica.</p>
+                        <button onclick="openModal('a')" class="text-ilagua-light font-bold text-sm flex items-center gap-2">Ver detalle <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 hover:shadow-corporate-lg transition-all group">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl text-ilagua-light shadow-sm mb-6 group-hover:bg-ilagua-light group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-microscopio"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-ilagua-navy mb-4">Investigación</h3>
+                        <p class="text-sm text-slate-600 mb-6">Estudios comparativos y alianzas con agencias multilaterales.</p>
+                        <button onclick="openModal('i')" class="text-ilagua-light font-bold text-sm flex items-center gap-2">Ver detalle <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACTO -->
+            <section id="contacto" class="py-20 bg-slate-900 text-white">
+                <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
+                    <div class="lg:col-span-2 space-y-8">
+                        <h2 class="font-heading text-4xl font-black">Canal Institucional</h2>
+                        <p class="text-slate-400">Inicie el diálogo técnico y legal con nuestros expertos consultores.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-ilagua-navy rounded-xl flex items-center justify-center text-ilagua-cyan">
+                                    <i class="fa-solid fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500 uppercase">Email</p>
+                                    <p class="text-lg font-bold">consultorias@ilagua.org</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-ilagua-navy rounded-xl flex items-center justify-center text-ilagua-cyan">
+                                    <i class="fa-solid fa-phone text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-500 uppercase">Teléfonos</p>
+                                    <p class="text-lg font-bold">5410463 - 5413737</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="lg:col-span-3 bg-white p-8 md:p-10 rounded-3xl space-y-4 text-slate-800">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Nombre Completo" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-ilagua-light outline-none">
+                            <input type="email" placeholder="Email Institucional" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-ilagua-light outline-none">
+                        </div>
+                        <input type="text" placeholder="Asunto / Servicio de Interés" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-ilagua-light outline-none">
+                        <textarea rows="4" placeholder="Mensaje o Alcance del Requerimiento" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-ilagua-light outline-none"></textarea>
+                        <button type="submit" class="w-full bg-ilagua-navy text-white font-bold py-4 rounded-xl hover:bg-ilagua-blue transition-all">Enviar Requerimiento</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="bg-ilagua-dark py-12 px-6 text-center text-slate-500 text-xs">
+                <div class="max-w-7xl mx-auto flex flex-col items-center gap-6">
+                    <svg class="h-10 w-auto opacity-50 grayscale" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="46" fill="#0b3c61" />
+                        <path d="M -5 78 C 25 78, 32 46, 52 42 C 72 38, 85 24, 105 12 L 105 28 C 88 42, 72 58, 48 62 C 28 66, 15 95, -5 98 Z" fill="white" />
+                    </svg>
+                    <p>© 2014 - 2025 ILAGUA - Instituto Latinoamericano del Agua. Calle 75 N° 8-34, Bogotá. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- MODAL DINÁMICO -->
+    <div id="modal-container" class="fixed inset-0 z-[10000] hidden flex items-center justify-center p-4">
+        <div onclick="closeModal()" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+        <div class="bg-white w-full max-w-2xl rounded-3xl p-8 relative z-10 modal-animate-enter max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-800"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <h3 id="modal-title" class="font-heading text-2xl font-black text-ilagua-navy mb-4"></h3>
+            <p id="modal-description" class="text-slate-600 mb-6 text-sm"></p>
+            <ul id="modal-items" class="space-y-3 text-sm text-slate-700 list-disc pl-5"></ul>
+        </div>
+    </div>
+
+    <script>
+        const folletoDatos = {
+            "c": { 
+                title: "Competencia Económica", 
+                description: "Asesoría integral en estructuración contractual y marcos reguladores antimonopolio.",
+                items: ["Democratización de la propiedad", "Contratos de concesión y usufructo", "Acceso compartido a redes", "Áreas de Servicio Exclusivo", "Defensa de usuarios"]
+            },
+            "m": { 
+                title: "Servicios en Mercadeo", 
+                description: "Estrategias de crecimiento y análisis prospectivo de demanda.",
+                items: ["Análisis de Mercados", "Benchmarking internacional", "Planes de expansión", "CRM y fidelización", "Fomento de alianzas estratégicas"]
+            },
+            "a": { 
+                title: "Administración y Planificación", 
+                description: "Modernización institucional y sistemas de información.",
+                items: ["Gobierno electrónico", "Gestión del cambio organizacional", "Censo de usuarios", "Sistemas de control interno", "Trámite de PQR y silencios administrativos"]
+            },
+            "i": { 
+                title: "Investigación", 
+                description: "Generación de conocimiento aplicado a servicios públicos.",
+                items: ["Simposios y seminarios especializados", "Vínculos con agencias multilaterales", "Estudios comparativos legislativos", "Desarrollo de marcos conceptuales"]
+            }
+        };
+
+        function setViewportMode(mode) {
+            const container = document.getElementById('sim-container');
+            const wrapper = document.getElementById('page-wrapper');
+            if (mode === 'mobile') {
+                container.classList.add('sim-mode-active');
+                wrapper.classList.add('sim-phone-frame');
+            } else {
+                container.classList.remove('sim-mode-active');
+                wrapper.classList.remove('sim-phone-frame');
+            }
+        }
+
+        function openModal(key) {
+            const data = folletoDatos[key];
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-description').innerText = data.description;
+            const list = document.getElementById('modal-items');
+            list.innerHTML = data.items.map(i => `<li>${i}</li>`).join('');
+            document.getElementById('modal-container').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>
